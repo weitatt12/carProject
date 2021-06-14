@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, Dimensions } from 'react-native';
 
 import CustomButtons from './CustomButtons';
 
@@ -7,11 +7,14 @@ const CarItems = (props) => {
     return(
         <View style={styles.carContainer}>
 
-            <ImageBackground source={props.img} style={styles.imgBackground} />
+            <ImageBackground source={props.car.img} style={styles.imgBackground} />
 
             <View style={styles.carTitles}>
-                <Text style={styles.carTitle}>{props.name}</Text>
-                <Text style={styles.carSubtitle}>{props.desc}</Text>
+                <Text style={styles.carTitle}>{props.car.name}</Text>
+                <Text style={styles.carSubtitle}>
+                    {props.car.desc} {" "}
+                    <Text style={styles.speDesc}>{props.car.speDesc}</Text>
+                </Text>
             </View>
 
             <View style={styles.buttonsContainer}>
@@ -25,7 +28,7 @@ const CarItems = (props) => {
 const styles = StyleSheet.create({
     carContainer: {
         width:'100%',
-        height:'100%'
+        height:Dimensions.get("window").height,
     },
     carTitles:{
         marginTop:'30%',
@@ -51,7 +54,10 @@ const styles = StyleSheet.create({
         position:"absolute",
         bottom:50,
         width:"100%",
-    },  
+    },
+    speDesc: {
+        textDecorationLine:"underline",
+    },
 })
 
 export default CarItems
